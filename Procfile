@@ -1,1 +1,1 @@
-web: gunicorn entrega-m5.wsgi
+web: waitress-serve --port=$PORT entrega-m5.wsgi:application
