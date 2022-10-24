@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["entrega-m5.herokuapp.com", "localhost"]
 
 
 # Application definition
@@ -152,4 +152,4 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
-ALLOWED_HOSTS = ['entrega-m5.herokuapp.com', 'localhost']
+
