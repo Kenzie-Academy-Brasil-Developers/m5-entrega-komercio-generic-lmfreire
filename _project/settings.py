@@ -15,6 +15,8 @@ from pathlib import Path
 import os
 import dotenv
 
+import dj_database_url
+
 dotenv.load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -82,7 +84,6 @@ WSGI_APPLICATION = "_project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
   "default": {
       "ENGINE": "django.db.backends.postgresql",
@@ -94,6 +95,12 @@ DATABASES = {
   }
 }
 
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    db_from_env = dj_database_url.config(
+        default=DATABASE_URL, conn_max_age=500, ssl_require=True)
+    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -144,3 +151,5 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 2,
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+ALLOWED_HOSTS = ['entrega-m5.herokuapp.com', 'localhost']
